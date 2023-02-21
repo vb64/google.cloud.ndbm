@@ -12,8 +12,9 @@ def ndb_wsgi_middleware(wsgi_app, client):
     return middleware
 
 
-def bind(app, gae_project):
+def bind(app, gae_project_id):
     """Wrap the Flask app in middleware."""
     # https://stackoverflow.com/questions/43628002/google-vision-api-project-not-passed
-    os.environ["GCLOUD_PROJECT"] = gae_project
+    os.environ["GCLOUD_PROJECT"] = gae_project_id
     app.wsgi_app = ndb_wsgi_middleware(app.wsgi_app, ndb.Client())
+    return app.wsgi_app

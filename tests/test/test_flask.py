@@ -21,5 +21,5 @@ class TestsFlask(TestBase):
         from google_cloud_ndbm.flask import bind
 
         assert "GCLOUD_PROJECT" not in os.environ
-        assert bind(self.app, "xxx") is None
+        assert bind(self.app, "xxx")
         assert os.environ["GCLOUD_PROJECT"] == "xxx"
